@@ -1,0 +1,32 @@
+@import "src/style/GlobalStyle";
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+
+
+.navbar-items{
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+
+  #text-navbar{
+    font-size: 20px;
+    width: 10rem;
+    color: $Contrast_theme_violet;
+    border: 0.05rem solid $Light_theme_yellow;
+    border-radius: 0.8rem;
+  }
+  .navbar-movies{
+    background-color: $Dark_theme_violet;
+    border-radius: 0.8rem;
+
+
+  }
+  #input-group-dropdown-2{
+    background-color: $Light_theme_yellow;
+  }
+}
+.before-Search{
+
+  color: $Light_theme_yellow;
+
+}

@@ -1,0 +1,43 @@
+@import "src/style/GlobalStyle";
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+
+
+.principal-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $Light_theme_yellow;
+  padding: 0;
+  height: 100px;
+
+}
+
+.tab-items {
+  display: flex;
+  justify-content: center;
+  background-color: $Contrast_theme_violet;
+  height: 40px;
+
+  .button-items {
+    align-items: center;
+
+    .button-items {
+      background-color: $Light_theme_yellow;
+      border: transparent;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+      color: $Dark_theme_blue;
+      border-radius: 0.8rem;
+    }
+
+    .button-items:hover {
+      background-color: $Dark_theme_violet;
+      color: $Light_theme_yellow;
+    }
+  }
+
+}
+
+
+
+
