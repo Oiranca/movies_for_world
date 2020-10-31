@@ -1,0 +1,11 @@
+@import "src/style/GlobalStyle";
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+
+
+.container-main {
+  margin-top: 1rem;
+  display: grid ;
+  grid-template: repeat(5,1fr)/repeat(4,1fr);
+
+
+}
