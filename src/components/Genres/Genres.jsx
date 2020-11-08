@@ -18,7 +18,7 @@ const Genres = (props) => {
         setTypeGenre(Object.values(res.data[key]));
 
 
-      });
+      }).catch(err => console.log(err));
 
 
     } else if (typesForSearchGenre === 'series') {
@@ -26,7 +26,7 @@ const Genres = (props) => {
         let key = Object.keys(res.data);
         setTypeGenre(Object.values(res.data[key]));
 
-      });
+      }).catch(err => console.log(err));
 
 
     }

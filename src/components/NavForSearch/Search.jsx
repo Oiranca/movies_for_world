@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import './Search.scss'
 import * as ReactBootstrap from "react-bootstrap";
 import Container from "../Container/Container";
 import Genres from "../Genres/Genres";
-import {searchByTitle, searchPopular} from "../../services/redux/action";
+import {searchByMoviesTitle, searchByTvTitle, searchPopular} from "../../services/redux/action";
 import {connect} from "react-redux";
 
 const types = {
@@ -22,9 +22,7 @@ const Search = (props) => {
   const [searchType, setSearchType] = useState(INITIAL_STATE_SEARCH);
   const typeRoutes = props.match.params.typeRoute;
 
-  // useEffect(() => {
-  //   setSearchType(INITIAL_STATE_SEARCH);
-  // }, [typeRoutes]);
+
 
 
   const onClickForSearch = (type) => {
@@ -38,8 +36,12 @@ const Search = (props) => {
 
 
   const handleChange = (event) => {
-    if (event.keyCode === 13) {
-      props.titleSearch(event.target.value, typeRoutes);
+    if (event.keyCode === 13 && typeRoutes==='movies') {
+      props.moviesTitleSearch(event.target.value, typeRoutes);
+      event.target.value = '';
+
+    }else if (event.keyCode === 13 && typeRoutes==='series') {
+      props.tvTitleSearch(event.target.value, typeRoutes);
       event.target.value = '';
 
     }
@@ -91,20 +93,24 @@ const Search = (props) => {
           </ReactBootstrap.Navbar.Collapse>
         </ReactBootstrap.Navbar>
       </article>
+
       {searchType === SEARCH_BY_GENRE && <Genres types={typeRoutes}/>}
 
-      {/*<Container/>*/}
+      <Container types={typeRoutes}/>
     </React.Fragment>
 
   )
 
 
-}
+};
+
+
 
 const mapDispatchToProps = (dispatch) =>
   // atento porque mapDispatchToProps debe devolver un objeto
   ({
-    titleSearch: (value, typeShowTitle) => searchByTitle(dispatch, value, typeShowTitle),
+    moviesTitleSearch: (value) => searchByMoviesTitle(dispatch, value),
+    tvTitleSearch: (value) => searchByTvTitle(dispatch, value),
     popularSearch: (typePopular) => searchPopular(dispatch, typePopular),
 
 
