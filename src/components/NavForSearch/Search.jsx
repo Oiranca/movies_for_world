@@ -1,8 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './Search.scss'
 import * as ReactBootstrap from "react-bootstrap";
 import Container from "../Container/Container";
 import Genres from "../Genres/Genres";
+import {searchByTitle, searchPopular} from "../../services/redux/action";
+import {connect} from "react-redux";
 
 const types = {
   TITTLE: 'Título',
@@ -10,43 +12,26 @@ const types = {
   POPULAR: 'Las 10 populares',
 
 }
+const SEARCH_BY_TITLE = 'SEARCH_BY_TITLE';
+const SEARCH_BY_GENRE = 'SEARCH_BY_GENRE';
+const SEARCH_BY_POPULAR = 'SEARCH_BY_POPULAR';
+const INITIAL_STATE_SEARCH = '';
 
 const Search = (props) => {
 
-  const [typeTittle, setTypeTittle] = useState(false);
-  const [typeGenre, setTypeGenre] = useState(false);
-  const [typePopular, setTypePopular] = useState(false);
+  const [searchType, setSearchType] = useState(INITIAL_STATE_SEARCH);
   const typeRoutes = props.match.params.typeRoute;
 
+  // useEffect(() => {
+  //   setSearchType(INITIAL_STATE_SEARCH);
+  // }, [typeRoutes]);
 
-  const onClickForSearch = (event) => {
-    let typeForSearch = event.target.id;
 
+  const onClickForSearch = (type) => {
+    setSearchType(type);
 
-    switch (typeForSearch) {
-
-      case types.TITTLE:
-        setTypeTittle(true);
-        setTypeGenre(false);
-        setTypePopular(false);
-        break;
-      case types.GENRES:
-        setTypeTittle(false);
-        setTypeGenre(true);
-        setTypePopular(false);
-
-        break;
-      case types.POPULAR:
-        setTypeTittle(false);
-        setTypeGenre(false);
-        setTypePopular(true);
-        break;
-
-      default:
-        setTypeTittle(false);
-        setTypeGenre(false);
-        setTypePopular(false);
-
+    if (type === SEARCH_BY_POPULAR) {
+      props.popularSearch(typeRoutes)
     }
 
   }
@@ -54,7 +39,7 @@ const Search = (props) => {
 
   const handleChange = (event) => {
     if (event.keyCode === 13) {
-
+      props.titleSearch(event.target.value, typeRoutes);
       event.target.value = '';
 
     }
@@ -77,24 +62,24 @@ const Search = (props) => {
                   <ReactBootstrap.Col xs="auto">
                     <ReactBootstrap.InputGroup>
                       <ReactBootstrap.FormControl
-                        readOnly={!typeTittle} onKeyUp={handleChange}/>
+                        readOnly={searchType !== SEARCH_BY_TITLE} onKeyUp={handleChange}/>
                     </ReactBootstrap.InputGroup>
 
 
                   </ReactBootstrap.Col>
                   <ReactBootstrap.Col xs="auto">
-                    <ReactBootstrap.FormCheck className='check-items' label={types.TITTLE} type='radio'
-                                              id={types.TITTLE} onChange={(e) => onClickForSearch(e)}
-                                              checked={typeTittle}/>
+                    <ReactBootstrap.FormCheck name="filter" className='check-items' label={types.TITTLE} type='radio'
+                                              id={types.TITTLE} onChange={(e) => onClickForSearch(SEARCH_BY_TITLE)}
+                                              checked={searchType === SEARCH_BY_TITLE}/>
                   </ReactBootstrap.Col>
                   <ReactBootstrap.Col xs="auto">
-                    <ReactBootstrap.FormCheck className='check-items' label={types.GENRES} type='radio'
-                                              id={types.GENRES} onChange={(e) => onClickForSearch(e)}
-                                              checked={typeGenre}/>
+                    <ReactBootstrap.FormCheck name="filter" className='check-items' label={types.GENRES} type='radio'
+                                              id={types.GENRES} onChange={(e) => onClickForSearch(SEARCH_BY_GENRE)}
+                                              checked={searchType === SEARCH_BY_GENRE}/>
                   </ReactBootstrap.Col><ReactBootstrap.Col xs="auto">
-                  <ReactBootstrap.FormCheck className='check-items' label={types.POPULAR} type='radio'
-                                            id={types.POPULAR} onChange={(e) => onClickForSearch(e)}
-                                            checked={typePopular}/>
+                  <ReactBootstrap.FormCheck name="filter" className='check-items' label={types.POPULAR} type='radio'
+                                            id={types.POPULAR} onChange={(e) => onClickForSearch(SEARCH_BY_POPULAR)}
+                                            checked={searchType === SEARCH_BY_POPULAR}/>
 
                 </ReactBootstrap.Col>
 
@@ -106,7 +91,7 @@ const Search = (props) => {
           </ReactBootstrap.Navbar.Collapse>
         </ReactBootstrap.Navbar>
       </article>
-      {typeGenre === true && <Genres types={typeRoutes}/>}
+      {searchType === SEARCH_BY_GENRE && <Genres types={typeRoutes}/>}
 
       {/*<Container/>*/}
     </React.Fragment>
@@ -116,4 +101,15 @@ const Search = (props) => {
 
 }
 
-export default Search;
+const mapDispatchToProps = (dispatch) =>
+  // atento porque mapDispatchToProps debe devolver un objeto
+  ({
+    titleSearch: (value, typeShowTitle) => searchByTitle(dispatch, value, typeShowTitle),
+    popularSearch: (typePopular) => searchPopular(dispatch, typePopular),
+
+
+  });
+
+const connected = connect(null, mapDispatchToProps)(Search);
+
+export default connected;
