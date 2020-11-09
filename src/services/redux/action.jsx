@@ -1,4 +1,10 @@
-import {searchMoviesByGenre, searchMoviesByTitle, searchTvByGenre, searchTvByTitle} from "../typeSearch/typeSearch";
+import {
+  searchMoviesByGenre,
+  searchMoviesByTitle,
+  searchMoviesPopular,
+  searchTvByGenre,
+  searchTvByTitle, searchTvPopular
+} from "../typeSearch/typeSearch";
 
 const searchMoviesTypeGenre = (dispatch, id) => {
 
@@ -36,18 +42,28 @@ const searchByTvTitle = (dispatch, value) => {
 
 
 };
-const searchPopular = (dispatch, typePopular) => {
+const searchPopularMovies = (dispatch) => {
 
-  dispatch({
-    type: 'SEARCH_POPULAR',
-    payload: {
+  searchMoviesPopular().then(res => dispatch({
+    type: 'POPULAR_MOVIES',
+    payload: res.data.results
+  })).catch(err => console.log(err));
 
-      searchPopularShow: typePopular,
-    }
 
-  });
-
+};
+const searchPopularTv = (dispatch) => {
+  searchTvPopular().then(res => dispatch({
+    type: 'POPULAR_TV',
+    payload: res.data.results
+  })).catch(err => console.log(err));
 };
 
 
-export {searchMoviesTypeGenre, searchTVTypeGenre, searchByMoviesTitle, searchByTvTitle, searchPopular};
+export {
+  searchMoviesTypeGenre,
+  searchTVTypeGenre,
+  searchByMoviesTitle,
+  searchByTvTitle,
+  searchPopularMovies,
+  searchPopularTv
+};

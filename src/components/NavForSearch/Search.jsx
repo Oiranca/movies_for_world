@@ -1,9 +1,14 @@
-import React, { useState} from "react";
+import React, {useEffect, useState} from "react";
 import './Search.scss'
 import * as ReactBootstrap from "react-bootstrap";
 import Container from "../Container/Container";
 import Genres from "../Genres/Genres";
-import {searchByMoviesTitle, searchByTvTitle, searchPopular} from "../../services/redux/action";
+import {
+  searchByMoviesTitle,
+  searchByTvTitle,
+  searchPopularMovies,
+  searchPopularTv
+} from "../../services/redux/action";
 import {connect} from "react-redux";
 
 const types = {
@@ -23,13 +28,22 @@ const Search = (props) => {
   const typeRoutes = props.match.params.typeRoute;
 
 
+  // TODO hacer que cuando cambie de ruta se pongan todos lo radio button uncheck sin que me error de unmont en genres
+
+// useEffect(()=> {
+//   setSearchType(INITIAL_STATE_SEARCH)
+// },[typeRoutes]);
 
 
   const onClickForSearch = (type) => {
     setSearchType(type);
 
     if (type === SEARCH_BY_POPULAR) {
-      props.popularSearch(typeRoutes)
+      if(typeRoutes==='movies'){
+        props.popularMovies();
+      }else if (typeRoutes==='series'){
+        props.popularTv();
+      }
     }
 
   }
@@ -96,7 +110,7 @@ const Search = (props) => {
 
       {searchType === SEARCH_BY_GENRE && <Genres types={typeRoutes}/>}
 
-      <Container types={typeRoutes}/>
+      <Container types={typeRoutes} searchType={searchType}/>
     </React.Fragment>
 
   )
@@ -111,7 +125,8 @@ const mapDispatchToProps = (dispatch) =>
   ({
     moviesTitleSearch: (value) => searchByMoviesTitle(dispatch, value),
     tvTitleSearch: (value) => searchByTvTitle(dispatch, value),
-    popularSearch: (typePopular) => searchPopular(dispatch, typePopular),
+    popularMovies: (typePopular) => searchPopularMovies(dispatch),
+    popularTv: () => searchPopularTv(dispatch),
 
 
   });

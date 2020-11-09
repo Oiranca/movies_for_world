@@ -16,5 +16,9 @@ const searchMoviesByGenre = (idGenreMovie) => axios.get(`https://api.themoviedb.
 
 const searchTvByGenre = (idGenreTv) => axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=${idGenreTv}`);
 
+const searchMoviesPopular = () => axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}`);
 
-export {getMoviesGenres, getTvGenres, searchMoviesByTitle, searchTvByTitle, searchMoviesByGenre, searchTvByGenre};
+const searchTvPopular = () => axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_API_KEY}`);
+
+
+export {getMoviesGenres, getTvGenres, searchMoviesByTitle, searchTvByTitle, searchMoviesByGenre, searchTvByGenre,searchMoviesPopular,searchTvPopular};

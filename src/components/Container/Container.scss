@@ -5,11 +5,13 @@
 .container-main {
   margin-top: 1rem;
   display: grid;
-  grid-template: repeat(5,1fr)/repeat(4,1fr);
+  grid-template-rows: repeat(auto-fit,1fr);
+  grid-template-columns: repeat(4,1fr);
   background-color: #7503A6;
   margin-right: 0.5rem;
   margin-left: 0.5rem;
   border-radius: 0.8rem;
+  overflow: auto;
 
 
   .movie {
@@ -43,9 +45,12 @@
         margin-left: 0.3rem;
         color: $Letter_theme_light_yellow;
       }
-      ul{
-        margin-top: 0.5rem;
-      }
+
+    }
+    ul{
+      margin-top: 0.5rem;
+      color: $Letter_theme_light_yellow;
+
     }
 
     .overview {

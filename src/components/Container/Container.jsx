@@ -15,14 +15,23 @@ const Container = (props) => {
 
   useEffect(() => {
 
-    setListShow(list.map(items => items));
+    if (props.searchType === 'SEARCH_BY_POPULAR') {
+      let popular = list.map(popularShows => popularShows);
 
+      popular.sort((a, b) => {
+        return b.vote_average - a.vote_average;
+      });
+
+      setListShow(popular.slice(0, 10));
+    } else {
+      setListShow(list.map(items => items));
+
+    }
 
   }, [list]);
 
   useEffect(() => {
 
-    // listShows.map(genres=>console.log(genres.genre_ids));
 
     if (typesForSearchGenre === 'movies') {
       getMoviesGenres().then(res => {
@@ -70,8 +79,8 @@ const Container = (props) => {
             <p>Vote Count :<span> {resultShow.vote_count}</span></p>
             {resultShow.release_date === undefined ? <p>First Air Date :<span>{resultShow.first_air_date}</span></p> :
               <p>Release Date :<span>{resultShow.release_date}</span></p>}
-            <p>Genres :
-              <span>
+            <p>Genres :</p>
+
             <ul>
               {viewGenre(resultShow.genre_ids).map((items, index) => {
 
@@ -80,7 +89,6 @@ const Container = (props) => {
                 )
               })}
             </ul>
-            </span></p>
 
             <section className="overview">
               <h4>Overview</h4>
