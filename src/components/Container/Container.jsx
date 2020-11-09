@@ -28,7 +28,7 @@ const Container = (props) => {
 
     }
 
-  }, [list]);
+  }, [list,props.searchType]);
 
   useEffect(() => {
 
@@ -51,7 +51,7 @@ const Container = (props) => {
     }
 
 
-  }, [listShows]);
+  }, [listShows,typesForSearchGenre]);
 
   const viewGenre = (id) => {
     return id.map((items) => {

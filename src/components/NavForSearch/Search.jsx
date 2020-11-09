@@ -25,23 +25,24 @@ const INITIAL_STATE_SEARCH = '';
 const Search = (props) => {
 
   const [searchType, setSearchType] = useState(INITIAL_STATE_SEARCH);
+
   const typeRoutes = props.match.params.typeRoute;
 
 
-  // TODO hacer que cuando cambie de ruta se pongan todos lo radio button uncheck sin que me error de unmont en genres
 
-// useEffect(()=> {
-//   setSearchType(INITIAL_STATE_SEARCH)
-// },[typeRoutes]);
+  useEffect(() => {
+    setSearchType(INITIAL_STATE_SEARCH)
+
+  }, [typeRoutes]);
 
 
   const onClickForSearch = (type) => {
     setSearchType(type);
 
     if (type === SEARCH_BY_POPULAR) {
-      if(typeRoutes==='movies'){
+      if (typeRoutes === 'movies') {
         props.popularMovies();
-      }else if (typeRoutes==='series'){
+      } else if (typeRoutes === 'series') {
         props.popularTv();
       }
     }
@@ -50,11 +51,11 @@ const Search = (props) => {
 
 
   const handleChange = (event) => {
-    if (event.keyCode === 13 && typeRoutes==='movies') {
+    if (event.keyCode === 13 && typeRoutes === 'movies') {
       props.moviesTitleSearch(event.target.value, typeRoutes);
       event.target.value = '';
 
-    }else if (event.keyCode === 13 && typeRoutes==='series') {
+    } else if (event.keyCode === 13 && typeRoutes === 'series') {
       props.tvTitleSearch(event.target.value, typeRoutes);
       event.target.value = '';
 
@@ -107,8 +108,7 @@ const Search = (props) => {
           </ReactBootstrap.Navbar.Collapse>
         </ReactBootstrap.Navbar>
       </article>
-
-      {searchType === SEARCH_BY_GENRE && <Genres types={typeRoutes}/>}
+      <Genres types={typeRoutes} searchType={searchType}/>
 
       <Container types={typeRoutes} searchType={searchType}/>
     </React.Fragment>
@@ -117,7 +117,6 @@ const Search = (props) => {
 
 
 };
-
 
 
 const mapDispatchToProps = (dispatch) =>

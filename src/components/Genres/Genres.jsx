@@ -9,6 +9,8 @@ import {searchMoviesTypeGenre, searchTVTypeGenre} from "../../services/redux/act
 const Genres = (props) => {
   const typesForSearchGenre = props.types;
   const [typeGenre, setTypeGenre] = useState([]);
+  const [active, setTActive] = useState(false);
+
 
   useEffect(() => {
 
@@ -31,8 +33,14 @@ const Genres = (props) => {
 
     }
 
+    if (props.searchType === 'SEARCH_BY_GENRE') {
+      setTActive(true)
+    } else {
+      setTActive(false)
+    }
 
-  }, [typesForSearchGenre]);
+
+  }, [typesForSearchGenre, props.searchType]);
 
   const onClickForChecked = (e) => {
 
@@ -48,7 +56,7 @@ const Genres = (props) => {
 
   return (
     <main className='container-genres'>
-      <ul className='genre-list'>
+      {!!active && <ul className='genre-list'>
         {typeGenre.map(types =>
 
           <li key={types.id} className='list-items-genre'>
@@ -57,7 +65,7 @@ const Genres = (props) => {
           </li>
         )}
 
-      </ul>
+      </ul>}
 
     </main>
   )
