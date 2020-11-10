@@ -4,13 +4,18 @@ import {getMoviesGenres, getTvGenres} from "../../services/typeSearch/typeSearch
 import * as ReactBootstrap from "react-bootstrap";
 import {connect} from 'react-redux';
 import {searchMoviesTypeGenre, searchTVTypeGenre} from "../../services/redux/action";
+import Container from "../Container/Container";
+
+
 
 
 const Genres = (props) => {
+
+  const searchType = props.searchType;
   const typesForSearchGenre = props.types;
   const [typeGenre, setTypeGenre] = useState([]);
   const [active, setTActive] = useState(false);
-
+  const [activeContainer,setActiveContainer]=useState(false);
 
   useEffect(() => {
 
@@ -33,21 +38,27 @@ const Genres = (props) => {
 
     }
 
-    if (props.searchType === 'SEARCH_BY_GENRE') {
+    if (searchType === 'SEARCH_BY_GENRE') {
       setTActive(true)
     } else {
       setTActive(false)
+      setActiveContainer(false);
+
     }
 
 
-  }, [typesForSearchGenre, props.searchType]);
+  }, [typesForSearchGenre, searchType]);
 
   const onClickForChecked = (e) => {
 
     if (typesForSearchGenre === 'movies') {
       props.genreMoviesSearch(e.target.id);
+      setActiveContainer(true);
+
     } else if (typesForSearchGenre === 'series') {
       props.genreTvSearch(e.target.id);
+      setActiveContainer(true);
+
 
     }
 
@@ -55,24 +66,32 @@ const Genres = (props) => {
   };
 
   return (
-    <main className='container-genres'>
-      {!!active && <ul className='genre-list'>
-        {typeGenre.map(types =>
 
-          <li key={types.id} className='list-items-genre'>
-            <ReactBootstrap.FormCheck name="genre" className='check-items' label={types.name} type='radio' id={types.id}
-                                      onChange={(e) => onClickForChecked(e)}/>
-          </li>
-        )}
+    <React.Fragment>
 
-      </ul>}
+      <main className='container-genres'>
+        {active && <ul className='genre-list'>
+          {typeGenre.map(types =>
 
-    </main>
-  )
+            <li key={types.id} className='list-items-genre'>
+              <ReactBootstrap.FormCheck name="genre" className='check-items' label={types.name} type='radio' id={types.id}
+                                        onChange={(e) => onClickForChecked(e)}/>
+            </li>
+          )}
+
+        </ul>}
+
+      </main>
+      <Container types={typesForSearchGenre} searchType={searchType} show={activeContainer}/>
+
+    </React.Fragment>
+
+
+
+)
 
 
 };
-
 
 const mapDispatchToProps = (dispatch) =>
   // atento porque mapDispatchToProps debe devolver un objeto
@@ -82,6 +101,7 @@ const mapDispatchToProps = (dispatch) =>
 
 
   });
+
 
 const connected = connect(null, mapDispatchToProps)(Genres);
 
