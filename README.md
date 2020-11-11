@@ -96,9 +96,12 @@ Para poder usar la aplicación y comprobar su funcionamiento, debemos una vez cl
 
 ### **`npm install`**
 
-Luego para poder levantarlo y que se ejecute, debemos usar el comando
+Luego para poder levantarlo y que se ejecute, debemos usar el comando:
 
 ### **`yarn start`**
+
+Recordar también poner, en la **raíz del proyecto**, nuestro **.env** con nuestra **API KEY**, tal cual como se indica el archivo del repositorio **.envExample**
+
 
 <div id='desarrollo'/>
 
