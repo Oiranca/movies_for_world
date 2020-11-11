@@ -6,16 +6,27 @@ import {getMoviesGenres, getTvGenres} from "../../services/typeSearch/typeSearch
 
 
 const Container = (props) => {
-  const list = props.shows;
+  const [list, setList] = useState([]);
   const typesForSearchGenre = props.types;
+  const searchType = props.searchType;
 
 
   const [listShows, setListShow] = useState([]);
   const [listGenre, setListGenre] = useState([]);
+  const [activesContainer, setActiveContainer] = useState(false);
+
+
+  useEffect(() => {
+    setActiveContainer(props.show)
+  }, [props.types,props.show]);
+
+  useEffect(() => {
+    setList(props.shows)
+  }, [typesForSearchGenre, props.shows]);
 
   useEffect(() => {
 
-    if (props.searchType === 'SEARCH_BY_POPULAR') {
+    if (searchType === 'SEARCH_BY_POPULAR') {
       let popular = list.map(popularShows => popularShows);
 
       popular.sort((a, b) => {
@@ -28,7 +39,7 @@ const Container = (props) => {
 
     }
 
-  }, [list,props.searchType]);
+  }, [list, searchType]);
 
   useEffect(() => {
 
@@ -51,7 +62,7 @@ const Container = (props) => {
     }
 
 
-  }, [listShows,typesForSearchGenre]);
+  }, [typesForSearchGenre]);
 
   const viewGenre = (id) => {
     return id.map((items) => {
@@ -65,7 +76,7 @@ const Container = (props) => {
   return (
     <React.Fragment>
 
-      <main className="container-main">{
+      {activesContainer && <main className="container-main">{
         listShows.map(resultShow =>
 
           <div className="movie" key={resultShow.id}>
@@ -99,7 +110,7 @@ const Container = (props) => {
           </div>
         )
       }
-      </main>
+      </main>}
     </React.Fragment>
   )
 };

@@ -23,27 +23,32 @@ const SEARCH_BY_POPULAR = 'SEARCH_BY_POPULAR';
 const INITIAL_STATE_SEARCH = '';
 
 const Search = (props) => {
-
+  const [activeContainer,setActiveContainer]=useState(false);
   const [searchType, setSearchType] = useState(INITIAL_STATE_SEARCH);
-
   const typeRoutes = props.match.params.typeRoute;
 
 
 
   useEffect(() => {
-    setSearchType(INITIAL_STATE_SEARCH)
+    setSearchType(INITIAL_STATE_SEARCH);
+    setActiveContainer(false);
 
   }, [typeRoutes]);
 
 
   const onClickForSearch = (type) => {
     setSearchType(type);
+    setActiveContainer(false);
 
     if (type === SEARCH_BY_POPULAR) {
       if (typeRoutes === 'movies') {
         props.popularMovies();
+        setActiveContainer(true);
+
       } else if (typeRoutes === 'series') {
         props.popularTv();
+        setActiveContainer(true);
+
       }
     }
 
@@ -53,10 +58,12 @@ const Search = (props) => {
   const handleChange = (event) => {
     if (event.keyCode === 13 && typeRoutes === 'movies') {
       props.moviesTitleSearch(event.target.value, typeRoutes);
+      setActiveContainer(true);
       event.target.value = '';
 
     } else if (event.keyCode === 13 && typeRoutes === 'series') {
       props.tvTitleSearch(event.target.value, typeRoutes);
+      setActiveContainer(true);
       event.target.value = '';
 
     }
@@ -110,7 +117,7 @@ const Search = (props) => {
       </article>
       <Genres types={typeRoutes} searchType={searchType}/>
 
-      <Container types={typeRoutes} searchType={searchType}/>
+      <Container types={typeRoutes} searchType={searchType} show={activeContainer}/>
     </React.Fragment>
 
   )
