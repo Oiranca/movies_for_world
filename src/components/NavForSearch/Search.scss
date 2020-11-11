@@ -1,0 +1,77 @@
+@import "src/style/GlobalStyle";
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+
+
+.navbar-items {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+
+
+  #text-navbar {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    width: 10rem;
+    color: $Contrast_theme_violet;
+    border: 0.05rem solid $Light_theme_yellow;
+    border-radius: 0.8rem;
+  }
+
+  .navbar-movies {
+    font-family: 'Raleway', sans-serif;
+
+    background-color: $Dark_theme_violet;
+    border-radius: 0.8rem;
+
+  }
+
+
+  .check-items {
+
+    background-color: $Light_theme_yellow;
+    padding: 0.5rem 2rem;
+    color: $Dark_theme_blue;
+    border-radius: 0.8rem;
+
+  }
+}
+
+.alert {
+  font-family: 'Raleway', sans-serif;
+
+  .tittle-modal {
+    background-color: $Contrast_theme_violet;
+    color: aliceblue;
+  }
+
+  #body-modal {
+
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: aliceblue;
+    color: darkred;
+
+  }
+
+  .footer-modal {
+    justify-content: center;
+    background-color: $Contrast_theme_violet;
+
+
+    #button-modal {
+      font-size: 20px;
+      color: aliceblue;
+      background-color: transparent;
+      border: 2px solid $Light_theme_yellow;
+    }
+
+    #button-modal:hover {
+      background-color: $Light_theme_yellow;
+      color: $Dark_theme_blue;
+      border-color: aliceblue;
+    }
+  }
+
+}

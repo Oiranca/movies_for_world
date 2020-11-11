@@ -1,0 +1,73 @@
+@import "src/style/GlobalStyle";
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+
+
+.container-main {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-rows: repeat(auto-fit,1fr);
+  grid-template-columns: repeat(4,1fr);
+  background-color: #7503A6;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  border-radius: 0.8rem;
+  overflow: auto;
+
+
+  .movie {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 2px solid $Dark_theme_violet;
+    margin: 1rem;
+    border-radius: 0.8rem;
+
+    h2 {
+      font-family: 'Roboto', sans-serif;
+      color: $Letter_theme_light_yellow;
+      font-weight: bold;
+    }
+
+    img {
+      margin-top: 0.5rem;
+      border-radius: 0.8rem;
+    }
+
+    p {
+      text-align: left;
+      font-family: 'Raleway', sans-serif;
+      color: $Letter_theme_light_blue;
+      margin: 0.5rem;
+      font-weight: bold;
+
+      span {
+        margin-left: 0.3rem;
+        color: $Letter_theme_light_yellow;
+      }
+
+    }
+    ul{
+      margin-top: 0.5rem;
+      color: $Letter_theme_light_yellow;
+
+    }
+
+    .overview {
+      text-align: left;
+      margin: 0.5rem;
+      color: $Letter_theme_light_yellow;
+
+
+      h4 {
+        text-align: center;
+        color: $Letter_theme_light_blue;
+        font-weight: bold;
+      }
+
+
+    }
+
+  }
+
+}
