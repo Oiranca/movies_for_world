@@ -18,7 +18,7 @@ const Container = (props) => {
 
   useEffect(() => {
     setActiveContainer(props.show)
-  }, [props.types,props.show]);
+  }, [typesForSearchGenre,props.show]);
 
   useEffect(() => {
     setList(props.shows)
