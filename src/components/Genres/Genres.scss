@@ -1,4 +1,4 @@
-@import "src/style/GlobalStyle";
+@import 'src/style/GlobalStyle';
 
 .container-genres {
   display: flex;
@@ -6,22 +6,18 @@
   justify-content: center;
   margin: 0.05rem;
 
-
   .genre-list {
     display: grid;
-    grid-template: repeat(4,1fr)/repeat(5,1fr);
+    grid-template: repeat(4, 1fr) / repeat(5, 1fr);
     justify-items: flex-start;
     list-style: none;
     background-color: $Light_theme_yellow;
     border-radius: 0.8rem;
-   padding: 1rem;
+    padding: 1rem;
 
     .list-items-genre {
       margin: 0.05rem 0.5rem;
       color: $Dark_theme_blue;
-
     }
-
-
   }
 }
