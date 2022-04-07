@@ -1,8 +1,8 @@
-import './App.css';
-import NavBar from './components/Navbar/NavBar';
-import React from 'react';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import Search from './components/NavForSearch/Search';
+import React from "react";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
+import NavBar from "./components/Navbar/NavBar";
+import Search from "./components/NavForSearch/Search";
+import "./App.css";
 
 function App() {
   return (
