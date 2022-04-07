@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/Oiranca/movies_for_world/static/css/main.2933eade.chunk.css",
-    "main.js": "/Oiranca/movies_for_world/static/js/main.0f7393d2.chunk.js",
-    "main.js.map": "/Oiranca/movies_for_world/static/js/main.0f7393d2.chunk.js.map",
-    "runtime-main.js": "/Oiranca/movies_for_world/static/js/runtime-main.91988ac6.js",
-    "runtime-main.js.map": "/Oiranca/movies_for_world/static/js/runtime-main.91988ac6.js.map",
-    "static/css/2.d6008dad.chunk.css": "/Oiranca/movies_for_world/static/css/2.d6008dad.chunk.css",
-    "static/js/2.a2b188cb.chunk.js": "/Oiranca/movies_for_world/static/js/2.a2b188cb.chunk.js",
-    "static/js/2.a2b188cb.chunk.js.map": "/Oiranca/movies_for_world/static/js/2.a2b188cb.chunk.js.map",
-    "index.html": "/Oiranca/movies_for_world/index.html",
-    "static/css/2.d6008dad.chunk.css.map": "/Oiranca/movies_for_world/static/css/2.d6008dad.chunk.css.map",
-    "static/css/main.2933eade.chunk.css.map": "/Oiranca/movies_for_world/static/css/main.2933eade.chunk.css.map",
-    "static/js/2.a2b188cb.chunk.js.LICENSE.txt": "/Oiranca/movies_for_world/static/js/2.a2b188cb.chunk.js.LICENSE.txt"
+    "main.css": "/movies_for_world/static/css/main.2933eade.chunk.css",
+    "main.js": "/movies_for_world/static/js/main.0f7393d2.chunk.js",
+    "main.js.map": "/movies_for_world/static/js/main.0f7393d2.chunk.js.map",
+    "runtime-main.js": "/movies_for_world/static/js/runtime-main.59a7ccbb.js",
+    "runtime-main.js.map": "/movies_for_world/static/js/runtime-main.59a7ccbb.js.map",
+    "static/css/2.d6008dad.chunk.css": "/movies_for_world/static/css/2.d6008dad.chunk.css",
+    "static/js/2.d6bb7f16.chunk.js": "/movies_for_world/static/js/2.d6bb7f16.chunk.js",
+    "static/js/2.d6bb7f16.chunk.js.map": "/movies_for_world/static/js/2.d6bb7f16.chunk.js.map",
+    "index.html": "/movies_for_world/index.html",
+    "static/css/2.d6008dad.chunk.css.map": "/movies_for_world/static/css/2.d6008dad.chunk.css.map",
+    "static/css/main.2933eade.chunk.css.map": "/movies_for_world/static/css/main.2933eade.chunk.css.map",
+    "static/js/2.d6bb7f16.chunk.js.LICENSE.txt": "/movies_for_world/static/js/2.d6bb7f16.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.91988ac6.js",
+    "static/js/runtime-main.59a7ccbb.js",
     "static/css/2.d6008dad.chunk.css",
-    "static/js/2.a2b188cb.chunk.js",
+    "static/js/2.d6bb7f16.chunk.js",
     "static/css/main.2933eade.chunk.css",
     "static/js/main.0f7393d2.chunk.js"
   ]
