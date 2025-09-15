@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Genres.scss';
 import { getMoviesGenres, getTvGenres } from '../../services/typeSearch/typeSearch';
-import * as ReactBootstrap from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { searchMoviesTypeGenre, searchTVTypeGenre } from '../../services/redux/action';
 import Container from '../Container/Container';
@@ -9,6 +8,7 @@ import Container from '../Container/Container';
 const Genres = props => {
   const searchType = props.searchType;
   const typesForSearchGenre = props.types;
+  const showContainer = props.show;
   const [typeGenre, setTypeGenre] = useState([]);
   const [active, setTActive] = useState(false);
   const [activeContainer, setActiveContainer] = useState(false);
@@ -55,14 +55,14 @@ const Genres = props => {
           <ul className="genre-list">
             {typeGenre.map(types => (
               <li key={types.id} className="list-items-genre">
-                <ReactBootstrap.FormCheck
+                <input
                   name="genre"
                   className="check-items"
-                  label={types.name}
                   type="radio"
                   id={types.id}
                   onChange={e => onClickForChecked(e)}
                 />
+                <label htmlFor={types.id}>{types.name}</label>
               </li>
             ))}
           </ul>
@@ -71,7 +71,7 @@ const Genres = props => {
       <Container
         types={typesForSearchGenre}
         searchType={searchType}
-        show={activeContainer}
+        show={showContainer || activeContainer}
       />
     </React.Fragment>
   );

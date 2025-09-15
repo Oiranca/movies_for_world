@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './Search.scss';
-import * as ReactBootstrap from 'react-bootstrap';
-import Container from '../Container/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import InputGroup from 'react-bootstrap/InputGroup';
 import Genres from '../Genres/Genres';
 import {
   searchByMoviesTitle,
@@ -61,66 +62,65 @@ const Search = props => {
   return (
     <React.Fragment>
       <article className="navbar-items">
-        <ReactBootstrap.Navbar className="navbar-movies" expand="md">
-          <ReactBootstrap.Navbar.Brand id="text-navbar">
+        <Navbar className="navbar-movies" expand="md">
+          <Navbar.Brand id="text-navbar">
             {' '}
             {typeRoutes.toUpperCase()}
-          </ReactBootstrap.Navbar.Brand>
-          <ReactBootstrap.Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <ReactBootstrap.Navbar.Collapse id="basic-navbar-nav">
-            <ReactBootstrap.Nav className="mr-auto">
-              <ReactBootstrap.InputGroup>
-                <ReactBootstrap.Form.Row className="align-items-center">
-                  <ReactBootstrap.Col xs="auto">
-                    <ReactBootstrap.InputGroup>
-                      <ReactBootstrap.FormControl
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <InputGroup>
+                <div className="align-items-center">
+                  <div>
+                    <div>
+                      <input
                         readOnly={searchType !== SEARCH_BY_TITLE}
                         onKeyUp={handleChange}
+                        className="form-control"
                       />
-                    </ReactBootstrap.InputGroup>
-                  </ReactBootstrap.Col>
-                  <ReactBootstrap.Col xs="auto">
-                    <ReactBootstrap.FormCheck
+                    </div>
+                  </div>
+                  <div>
+                    <input
                       name="filter"
                       className="check-items"
-                      label={types.TITTLE}
                       type="radio"
                       id={types.TITTLE}
                       onChange={e => onClickForSearch(SEARCH_BY_TITLE)}
                       checked={searchType === SEARCH_BY_TITLE}
                     />
-                  </ReactBootstrap.Col>
-                  <ReactBootstrap.Col xs="auto">
-                    <ReactBootstrap.FormCheck
+                    <label htmlFor={types.TITTLE}>{types.TITTLE}</label>
+                  </div>
+                  <div>
+                    <input
                       name="filter"
                       className="check-items"
-                      label={types.GENRES}
                       type="radio"
                       id={types.GENRES}
                       onChange={e => onClickForSearch(SEARCH_BY_GENRE)}
                       checked={searchType === SEARCH_BY_GENRE}
                     />
-                  </ReactBootstrap.Col>
-                  <ReactBootstrap.Col xs="auto">
-                    <ReactBootstrap.FormCheck
+                    <label htmlFor={types.GENRES}>{types.GENRES}</label>
+                  </div>
+                  <div>
+                    <input
                       name="filter"
                       className="check-items"
-                      label={types.POPULAR}
                       type="radio"
                       id={types.POPULAR}
                       onChange={e => onClickForSearch(SEARCH_BY_POPULAR)}
                       checked={searchType === SEARCH_BY_POPULAR}
                     />
-                  </ReactBootstrap.Col>
-                </ReactBootstrap.Form.Row>
-              </ReactBootstrap.InputGroup>
-            </ReactBootstrap.Nav>
-          </ReactBootstrap.Navbar.Collapse>
-        </ReactBootstrap.Navbar>
+                    <label htmlFor={types.POPULAR}>{types.POPULAR}</label>
+                  </div>
+                </div>
+              </InputGroup>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
       </article>
-      <Genres types={typeRoutes} searchType={searchType} />
-
-      <Container types={typeRoutes} searchType={searchType} show={activeContainer} />
+      <Genres types={typeRoutes} searchType={searchType} show={activeContainer} />
     </React.Fragment>
   );
 };
